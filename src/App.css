@@ -21,13 +21,21 @@
   border: 2px solid red;
   width: 50vw;
   flex-wrap: wrap;
+  width: 240px;
 }
 
-.square {
+.blue {
   border: 2px solid blue;
   height: 20px;
   width: 20px;
 
+}
+
+.red{
+    border: 2px solid blue;
+  height: 20px;
+  width: 20px;
+background-color: red;
 }
 
 .square:focus{

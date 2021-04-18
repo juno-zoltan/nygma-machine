@@ -1,7 +1,7 @@
 
 function DivObject(props) {
     return (
-        <div className={props.color}></div>
+        <div className={props}></div>
     )
 }
 
