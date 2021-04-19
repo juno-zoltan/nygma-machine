@@ -7,6 +7,8 @@ import DivObject from './DivObject';
 function App() {
   const [divsArray, setDivsArray] = useState([]);
   const [playerPosition, setPlayerPostion] = useState(0);
+  const [openPath, setOpenPath] = useState(true);
+  // const [steps, setSteps] = useState(0);
 
   //connect players div position to movement function]
 
@@ -24,74 +26,77 @@ function App() {
 const populateArray = function (howMany, newPosition) {
   const innerArray = [];
   for (let i = 0; i < howMany; i++){
-    if (i === newPosition) {
-      const item = DivObject('red')
-       innerArray.push(item);
+    if (i === 1 || i === 11) {
+      const item = DivObject('path block')
+      innerArray.push(item);
     }
-    else {
-      const item = DivObject('blue')
+    else if (i === newPosition) {
+      const item = DivObject('path red')
+      innerArray.push(item);
+    } else {
+      const item = DivObject('path open')
       innerArray.push(item);
     }
   }
   setDivsArray(innerArray);
 }
-  
-  //useEffect to fill the array on initial load
-  useEffect(() => {
 
-    populateArray(100, playerPosition);
-    console.log(divsArray[13]);
-  
-
-    
-  }, [])
-
-  
-
+  //use array to populate grid squares
  useEffect(() => {
-
     populateArray(100, playerPosition);
-    
   }, [playerPosition])
 
-  // useEffect(() => {
-  //   activateSquare(12);
-  // },[])
+  //check surrounding div classnames - store 'true' in state openPath if not a block div 
+  const pathCheck = function (displacement) {
+    const currentLocation = playerPosition;
+    const targetDirection = currentLocation + displacement;
+    setOpenPath(divsArray[targetDirection].props.className === "path open")
+  }  
+  
+  // const canIWalk = () => {
+  //   openPath
+  //     ? console.log(true)
+  //     : console.log(false)
+  // }
 
-    
-    //function to change the player position value
+   //function to change the player position value -- 1822
   const activateSquare = function (displacement) {
+    console.log(openPath);
     let newPosition = playerPosition;
     newPosition = (newPosition + displacement);
-    changeColour(newPosition);
+    // changeColour(newPosition);
     setPlayerPostion(newPosition);
-  
-  }
-
-  //function to change the colour 
-  const changeColour = function (newPosition) {
-    // divsArray[playerPosition].props.className = 'red';
-    console.log(divsArray[playerPosition].props.className)
-  }
-
+    }
 
   useKeypress(['ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp'], (event) => {
     if (event.key === 'ArrowRight') {
-      activateSquare(1);
+      pathCheck(1);
+      //openPath showing previous state cycle value
+      // if (openPath === true) {
+      //   activateSquare(1);
+      // } else {
+      //   console.log("blocked!")
+      // }
     }
     else if (event.key === 'ArrowLeft') {
-      activateSquare(-1);
+      pathCheck(-1);
        }
     else if (event.key === 'ArrowUp') {
-      activateSquare(-10);
+      pathCheck(-10);
        }
     else if (event.key === 'ArrowDown') {
-      activateSquare(10);
+      pathCheck(10);
     }
     else {
       console.log('somethings wrong!')
     }
   })
+
+  //function to change the colour 
+  // const changeColour = function (newPosition) {
+  //   // divsArray[playerPosition].props.className = 'red';
+  //   console.log(divsArray[playerPosition].props.className)
+  // }
 
 
   return (
@@ -105,7 +110,7 @@ const populateArray = function (howMany, newPosition) {
       
             {divsArray.map((item) => {
                 return(
-                  <div className = {item.className} key={item.key} tabIndex='0'>
+                  <div className = {item.className} key={divsArray.indexOf(item)}>
 
                     {item}   
              
