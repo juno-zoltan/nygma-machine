@@ -63,12 +63,6 @@ const populateArray = function (howMany, newPosition) {
   useKeypress(['ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp'], (event) => {
     if (event.key === 'ArrowRight') {
       activateSquare(1);
-      //openPath showing previous state cycle value
-      // if (openPath === true) {
-      //   activateSquare(1);
-      // } else {
-      //   console.log("blocked!")
-      // }
     }
     else if (event.key === 'ArrowLeft') {
       activateSquare(-1);
