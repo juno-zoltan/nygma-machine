@@ -7,8 +7,6 @@ import DivObject from './DivObject';
 function App() {
   const [divsArray, setDivsArray] = useState([]);
   const [playerPosition, setPlayerPostion] = useState(0);
-  const [openPath, setOpenPath] = useState(true);
-  // const [steps, setSteps] = useState(0);
 
   //connect players div position to movement function]
 
@@ -46,31 +44,25 @@ const populateArray = function (howMany, newPosition) {
     populateArray(100, playerPosition);
   }, [playerPosition])
 
-  //check surrounding div classnames - store 'true' in state openPath if not a block div 
-  const pathCheck = function (displacement) {
+
+   //function to check validity of path and, if open, change the player position value
+  const activateSquare = function (displacement) {
     const currentLocation = playerPosition;
     const targetDirection = currentLocation + displacement;
-    setOpenPath(divsArray[targetDirection].props.className === "path open")
-  }  
-  
-  // const canIWalk = () => {
-  //   openPath
-  //     ? console.log(true)
-  //     : console.log(false)
-  // }
-
-   //function to change the player position value -- 1822
-  const activateSquare = function (displacement) {
-    console.log(openPath);
     let newPosition = playerPosition;
-    newPosition = (newPosition + displacement);
+    if (divsArray[targetDirection].props.className === "path open") {
+      newPosition = (newPosition + displacement);
+      console.log("walking!!");
+    } else {
+      console.log("blocked!");
+    }
     // changeColour(newPosition);
     setPlayerPostion(newPosition);
     }
 
   useKeypress(['ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp'], (event) => {
     if (event.key === 'ArrowRight') {
-      pathCheck(1);
+      activateSquare(1);
       //openPath showing previous state cycle value
       // if (openPath === true) {
       //   activateSquare(1);
@@ -79,13 +71,13 @@ const populateArray = function (howMany, newPosition) {
       // }
     }
     else if (event.key === 'ArrowLeft') {
-      pathCheck(-1);
+      activateSquare(-1);
        }
     else if (event.key === 'ArrowUp') {
-      pathCheck(-10);
+      activateSquare(-10);
        }
     else if (event.key === 'ArrowDown') {
-      pathCheck(10);
+      activateSquare(10);
     }
     else {
       console.log('somethings wrong!')
