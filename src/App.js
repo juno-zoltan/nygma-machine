@@ -18,26 +18,51 @@ function App() {
   //ACTUAL 
   //movement function to set players div position 
 
-  
+//populate the array 
+ const populateArray = function (howMany, newPosition) {
+     const innerArray = [];
+     const invalidArray = [1, 2, 44, 36, 68];
+     const compareArray = (i) => {
+      for (let x = 0; x < invalidArray.length; x++) {
+        if (i === invalidArray[x]) {
+          return true;
+        } 
+     }}
+     
+  for (let i = 0; i < howMany; i++) {
+    if (compareArray(i)) {    
+        const item = DivObject('path block')
+        innerArray.push(item);
+    }
+      else if (i === newPosition) {
+        const item = DivObject('path red')
+        innerArray.push(item);
+      } else {
+        const item = DivObject('path open')
+        innerArray.push(item);
+      }
+    }
+    setDivsArray(innerArray);
+  }  
   
 //populate the array 
-const populateArray = function (howMany, newPosition) {
-  const innerArray = [];
-  for (let i = 0; i < howMany; i++){
-    if (i === 1 || i === 11) {
-      const item = DivObject('path block')
-      innerArray.push(item);
-    }
-    else if (i === newPosition) {
-      const item = DivObject('path red')
-      innerArray.push(item);
-    } else {
-      const item = DivObject('path open')
-      innerArray.push(item);
-    }
-  }
-  setDivsArray(innerArray);
-}
+// const populateArray = function (howMany, newPosition) {
+//   const innerArray = [];
+//   for (let i = 0; i < howMany; i++){
+//     if (i === 1 || i === 11) {
+//       const item = DivObject('path block')
+//       innerArray.push(item);
+//     }
+//     else if (i === newPosition) {
+//       const item = DivObject('path red')
+//       innerArray.push(item);
+//     } else {
+//       const item = DivObject('path open')
+//       innerArray.push(item);
+//     }
+//   }
+//   setDivsArray(innerArray);
+// }
 
   //use array to populate grid squares
  useEffect(() => {
