@@ -15,7 +15,8 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
 .flexContainer{
   display: flex;
   flex-wrap: wrap;
-  width: 700px;
+  width: 630px;
+  height: 630px;
 }
 
 .path {
