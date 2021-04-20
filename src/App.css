@@ -1,32 +1,27 @@
+/*general*/
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}footer,header{display:block}h1{font-size:2em;margin:.67em 0}a{background-color:transparent;-webkit-text-decoration-skip:objects}img{border-style:none}svg:not(:root){overflow:hidden}button,input{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button{text-transform:none}button,html [type=button],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}
+
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+.wrapper {
+  max-width: 1200px;
+  margin: 30px auto;
 }
 
+/*advice form*/
 
-.App-header {
-  background-color: #282c34;
-  min-height: 20vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
+/*maze*/
 .flexContainer{
   display: flex;
-  width: 50vw;
   flex-wrap: wrap;
-  width: 240px;
+  width: 700px;
 }
 
 .path {
-  border: 2px solid blue;
-  height: 20px;
-  width: 20px;
+  border: 0.5px solid blue;
+  height: 42px;
+  width: 42px;
 }
 
 .red{

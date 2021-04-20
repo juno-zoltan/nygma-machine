@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Advice from "./Advice.js";
 import randomAdvice from "./randomAdvice.js";
+// import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 const GetApiResponse = () => {
   // State for advice
@@ -55,7 +56,7 @@ const GetApiResponse = () => {
   }, [query]);
 
   return (
-    <div>
+    <div className="wrapper">
       <form onSubmit={submitChange}>
         <label htmlFor="newName">Please enter your name</label>
         <input
@@ -76,7 +77,7 @@ const GetApiResponse = () => {
           value={userInput}
           required
         />
-        <button type="submit">submit</button>
+       <button type="submit">submit</button>
       </form>
 
       <Advice answer={advice} name={saveName} />
