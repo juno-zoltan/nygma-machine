@@ -8,27 +8,18 @@ function App() {
   const [divsArray, setDivsArray] = useState([]);
   const [playerPosition, setPlayerPostion] = useState(0);
 
-  //connect players div position to movement function]
-
-  //HANDLING THE MOVE CROSSCHECKING VALIDITY
-  //pick up player move
-  //check to see if move is valid (does the )
-  //if valid, move
-
-  //ACTUAL 
-  //movement function to set players div position 
+//block array helper function
+const compareArray = (i) => {
+  const invalidArray = [1, 2, 44, 36, 68];
+  for (let x = 0; x < invalidArray.length; x++) {
+    if (i === invalidArray[x]) {
+      return true;
+    } 
+ }}
 
 //populate the array 
  const populateArray = function (howMany, newPosition) {
-     const innerArray = [];
-     const invalidArray = [1, 2, 44, 36, 68];
-     const compareArray = (i) => {
-      for (let x = 0; x < invalidArray.length; x++) {
-        if (i === invalidArray[x]) {
-          return true;
-        } 
-     }}
-     
+  const innerArray = [];     
   for (let i = 0; i < howMany; i++) {
     if (compareArray(i)) {    
         const item = DivObject('path block')
@@ -45,25 +36,6 @@ function App() {
     setDivsArray(innerArray);
   }  
   
-//populate the array 
-// const populateArray = function (howMany, newPosition) {
-//   const innerArray = [];
-//   for (let i = 0; i < howMany; i++){
-//     if (i === 1 || i === 11) {
-//       const item = DivObject('path block')
-//       innerArray.push(item);
-//     }
-//     else if (i === newPosition) {
-//       const item = DivObject('path red')
-//       innerArray.push(item);
-//     } else {
-//       const item = DivObject('path open')
-//       innerArray.push(item);
-//     }
-//   }
-//   setDivsArray(innerArray);
-// }
-
   //use array to populate grid squares
  useEffect(() => {
     populateArray(100, playerPosition);
@@ -77,14 +49,11 @@ function App() {
     let newPosition = playerPosition;
     if (divsArray[targetDirection].props.className === "path open") {
       newPosition = (newPosition + displacement);
-      console.log("walking!!");
-    } else {
-      console.log("blocked!");
-    }
-    // changeColour(newPosition);
+    } 
     setPlayerPostion(newPosition);
     }
 
+    //connecting path move with arrow keys
   useKeypress(['ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp'], (event) => {
     if (event.key === 'ArrowRight') {
       activateSquare(1);
@@ -102,13 +71,6 @@ function App() {
       console.log('somethings wrong!')
     }
   })
-
-  //function to change the colour 
-  // const changeColour = function (newPosition) {
-  //   // divsArray[playerPosition].props.className = 'red';
-  //   console.log(divsArray[playerPosition].props.className)
-  // }
-
 
   return (
     <div className="App">
