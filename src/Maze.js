@@ -1,10 +1,13 @@
 import DivObject from "./DivObject";
 import { useEffect, useState } from "react";
 import useKeypress from "react-use-keypress";
+import AdviceReady from "./AdviceReady";
+
 
 const Maze = () => {
     const [divsArray, setDivsArray] = useState([]);
     const [playerPosition, setPlayerPostion] = useState(16);
+    const [displayAdvice, setDisplayAdvice] = useState(false);
 
     //block array helper function
     const compareArray = (i) => {
@@ -23,7 +26,8 @@ const Maze = () => {
         if (compareArray(i)) {
             const item = DivObject("path block");
             innerArray.push(item);
-        } else if (i === newPosition) {
+        }
+        else if (i === newPosition) {
             const item = DivObject("path red");
             innerArray.push(item);
         } else {
@@ -37,19 +41,9 @@ const Maze = () => {
     //use array to populate grid squares
     useEffect(() => {
         populateArray(225, playerPosition);
-    }, [playerPosition]);
+    },[playerPosition]);
 
-    //function to check validity of path and, if open, change the player position value
-    const activateSquare = function (displacement) {
-        const currentLocation = playerPosition;
-        const targetDirection = currentLocation + displacement;
-        let newPosition = playerPosition;
-        if (divsArray[targetDirection].props.className === "path open") {
-        newPosition = newPosition + displacement;
-        }
-        setPlayerPostion(newPosition);
-    };
-
+    
     //connecting path move with arrow keys
     useKeypress(["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp"], (event) => {
         if (event.key === "ArrowRight") {
@@ -64,6 +58,26 @@ const Maze = () => {
         console.log("somethings wrong!");
         }
     });
+
+    //function to check validity of path and, if open, change the player position value
+    const activateSquare = function (displacement) {
+        const currentLocation = playerPosition;
+        const targetDirection = currentLocation + displacement;
+        let newPosition = playerPosition;
+        if (divsArray[targetDirection].props.className === "path open") {
+        newPosition = newPosition + displacement;
+        }
+        setPlayerPostion(newPosition);
+        adviceMe(newPosition);
+    };
+
+    //trigger advice-giving at end of game
+    const adviceMe = (newPosition) => {
+        if (newPosition === 209) {
+            setDisplayAdvice(true);
+        }
+    }
+
     return (
         <div className="mazeContainer">
           <div className="flexContainer">
@@ -75,6 +89,12 @@ const Maze = () => {
               );
             })}
           </div>
+
+          {
+            displayAdvice 
+            ? <AdviceReady showAdvice={() => setDisplayAdvice(false)}/>
+            : null
+            }
         </div>
     )
 }

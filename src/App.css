@@ -37,3 +37,26 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
   display: flex;
   justify-content: center;
 }
+
+/*advice ready*/
+
+.giveMeAdviceWrapper {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 30;
+}
+
+.giveMeAdvice {
+  width: 60%;
+  padding: 30px;
+  border-radius: 8px;  
+  text-align: center;  
+  background-color: white;
+  opacity: 1;
+}
