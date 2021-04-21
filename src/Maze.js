@@ -19,27 +19,26 @@ const Maze = () => {
         }
     };
 
-    //populate the array
-    const populateArray = function (howMany, newPosition) {
-        const innerArray = [];
-        for (let i = 0; i < howMany; i++) {
-        if (compareArray(i)) {
-            const item = DivObject("path block");
-            innerArray.push(item);
-        }
-        else if (i === newPosition) {
-            const item = DivObject("path red");
-            innerArray.push(item);
-        } else {
-            const item = DivObject("path open");
-            innerArray.push(item);
-        }
-        }
-        setDivsArray(innerArray);
-    };
-
     //use array to populate grid squares
     useEffect(() => {
+        //populate the array
+        const populateArray = function (howMany, newPosition) {
+            const innerArray = [];
+            for (let i = 0; i < howMany; i++) {
+            if (compareArray(i)) {
+                const item = DivObject("path block");
+                innerArray.push(item);
+            }
+            else if (i === newPosition) {
+                const item = DivObject("path red");
+                innerArray.push(item);
+            } else {
+                const item = DivObject("path open");
+                innerArray.push(item);
+            }
+            }
+            setDivsArray(innerArray);
+        };
         populateArray(225, playerPosition);
     },[playerPosition]);
 
