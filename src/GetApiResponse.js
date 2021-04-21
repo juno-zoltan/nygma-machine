@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Advice from "./Advice.js";
 import randomAdvice from "./randomAdvice.js";
-// import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const GetApiResponse = () => {
   // State for advice
@@ -33,7 +33,18 @@ const GetApiResponse = () => {
     setSaveName(userName);
     setUserInput("");
     setUserName("");
+    // toggleOnOff();
   };
+
+  // const toggleOnOff = () => {
+  //   if (userInput && userName) {
+  //     setOnOff(false);
+  //   } else {
+  //     setOnOff(true);
+  //   }
+  // };
+
+  // const [onOff, setOnOff] = useState(true);
 
   useEffect(() => {
     if (query !== "") {
@@ -77,7 +88,9 @@ const GetApiResponse = () => {
           value={userInput}
           required
         />
-       <button type="submit">submit</button>
+        <Link to="/maze">
+          <button type="submit">submit</button>
+        </Link>
       </form>
 
       <Advice answer={advice} name={saveName} />
