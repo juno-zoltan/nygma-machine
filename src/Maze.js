@@ -79,6 +79,8 @@ const Maze = () => {
     }
 
     return (
+        <div className="wrapper">
+            <p>Advice Slip, our fortune teller, is processing your request. Please finish this maze - when you reach the end, your advice will be ready for you, should you still want it. Good luck!</p>
         <div className="mazeContainer">
           <div className="flexContainer">
             {divsArray.map((item) => {
@@ -95,6 +97,7 @@ const Maze = () => {
             ? <AdviceReady showAdvice={() => setDisplayAdvice(false)}/>
             : null
             }
+        </div>
         </div>
     )
 }
