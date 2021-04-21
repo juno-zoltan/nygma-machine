@@ -90,13 +90,18 @@ const Maze = () => {
                 </div>
               );
             })}
+          </div> 
+          <div className="controlsContainer">
+              <button className="arrow left" onClick={(e) => activateSquare(-1)}>&#8249;</button>
+              <button className="arrow right" onClick={(e) => activateSquare(1)}>&#8250;</button>
+              <button className="arrow up" onClick={(e) => activateSquare(-15)}>&#94;</button>
+              <button className="arrow down" onClick={(e) => activateSquare(15)}>Down</button>
           </div>
-
           {
             displayAdvice 
             ? <AdviceReady showAdvice={() => setDisplayAdvice(false)}/>
             : null
-            }
+          }         
         </div>
         </div>
     )

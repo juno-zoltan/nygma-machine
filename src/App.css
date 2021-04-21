@@ -97,6 +97,13 @@ button:-moz-focusring,
 .mazeContainer {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.arrow {
+  font-size: 3rem;
+  font-weight: bold;
 }
 
 /*advice ready*/
