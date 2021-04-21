@@ -19,10 +19,8 @@ const Maze = () => {
         }
     };
 
-
-
-    //use array to populate grid squares
     useEffect(() => {
+        //populate the array
         const populateArray = function (howMany, newPosition) {
             const innerArray = [];
             for (let i = 0; i < howMany; i++) {

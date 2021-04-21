@@ -128,3 +128,28 @@ button:-moz-focusring,
   background-color: white;
   opacity: 1;
 }
+
+@media (max-width: 645px) {
+  .flexContainer{
+width:  441px;
+height:  441px;
+
+}
+.path{
+height: 29.4px;
+width:29.4px;
+}
+}
+
+
+@media (max-width: 445px) {
+  .flexContainer{
+width:  315px;
+height:  315px;
+
+}
+.path{
+height: 21px;
+width: 21px;
+}
+}
