@@ -1,22 +1,43 @@
 import "./App.css";
-import Maze from "./Maze.js";
 import GetApiResponse from "./GetApiResponse.js";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import Maze from "./Maze.js";
+import Advice from "./Advice.js";
+import {useState} from "react";
 
 function App() {
+
+  const [showComponent, setShowComponent] = useState("api");
+
   return (
-    <Router>
       <div>
+=======
+      <div className="siteBackground formContainer">
         <header>
           <div className="wrapper">
-            <h1>Bitchin' Test Zone</h1>
+          <div className='frontpageContainer'>
+              <h1>Ask Zoltan</h1>
+              </div>
           </div>
         </header>
         <main>
-          {/* <GetApiResponse /> */}
-          <Route exact path="/" component={GetApiResponse} />
-          {/* <Maze /> */}
-          <Route path="/maze" component={Maze} />
+          
+          {
+            showComponent === "api"
+            ?<GetApiResponse showMaze={() => setShowComponent("maze")}/>
+            : null
+          }
+
+          {
+            showComponent === "maze"
+            ?<Maze showAdvice={() => setShowComponent("advice")}/>
+            : null
+          }
+
+          {
+            showComponent === "advice"
+            ?<Advice getAdvice={() => setShowComponent("api")}/>
+            : null
+    
         </main>
         <footer>
           <div className="wrapper">
@@ -27,7 +48,6 @@ function App() {
           </div>
         </footer>
       </div>
-    </Router>
   );
 }
 

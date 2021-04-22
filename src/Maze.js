@@ -4,10 +4,12 @@ import useKeypress from "react-use-keypress";
 import AdviceReady from "./AdviceReady";
 
 
-const Maze = () => {
+
+const Maze = ({showAdvice}) => {
     const [divsArray, setDivsArray] = useState([]);
     const [playerPosition, setPlayerPostion] = useState(16);
-    const [displayAdvice, setDisplayAdvice] = useState(false);
+    const [wantAdvice, setWantAdvice] = useState(false);
+    const [quitMaze, setQuitMaze] = useState(false);
 
     //block array helper function
     const compareArray = (i) => {
@@ -72,13 +74,21 @@ const Maze = () => {
     //trigger advice-giving at end of game
     const adviceMe = (newPosition) => {
         if (newPosition === 209) {
-            setDisplayAdvice(true);
+            setWantAdvice(true);
         }
     }
 
+    //close maze
+
+    useEffect(() => {
+        if (quitMaze) {
+            showAdvice();
+          }
+    })
+
     return (
         <div className="wrapper">
-            <p>Advice Slip, our fortune teller, is processing your request. Please finish this maze - when you reach the end, your advice will be ready for you, should you still want it. Good luck!</p>
+            <p>Our fortune teller is processing your request. Please finish this maze - when you reach the end, your advice will be ready for you, should you still want it. Good luck!</p>
         <div className="mazeContainer">
           <div className="flexContainer">
             {divsArray.map((item) => {
@@ -95,9 +105,16 @@ const Maze = () => {
               <button className="arrow up" onClick={(e) => activateSquare(-15)}>&#94;</button>
               <button className="arrow down" onClick={(e) => activateSquare(15)}>Down</button>
           </div>
+
           {
-            displayAdvice 
-            ? <AdviceReady showAdvice={() => setDisplayAdvice(false)}/>
+            wantAdvice 
+            ? <div className="giveMeAdviceWrapper">
+                    <div className="giveMeAdvice">
+                        <p>Congrats on making it through the maze! Your advice is ready for you.</p>
+                        <button onClick = {() => setQuitMaze(true)}>Give me my advice!</button>
+                        <button onClick = {() => setWantAdvice(false)}>Take me back to the maze! I was kidding about wanting advice. I'm so glad you made me do this maze, it's all I need in life.</button>
+                    </div>
+                </div>
             : null
           }         
         </div>
