@@ -1,8 +1,6 @@
 import DivObject from "./DivObject";
 import { useEffect, useState } from "react";
 import useKeypress from "react-use-keypress";
-import AdviceReady from "./AdviceReady";
-
 
 
 const Maze = ({showAdvice}) => {
@@ -43,83 +41,108 @@ const Maze = ({showAdvice}) => {
         populateArray(225, playerPosition);
     },[playerPosition]);
 
-    
-    //connecting path move with arrow keys
-    useKeypress(["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp"], (event) => {
-        if (event.key === "ArrowRight") {
-        activateSquare(1);
-        } else if (event.key === "ArrowLeft") {
-        activateSquare(-1);
-        } else if (event.key === "ArrowUp") {
-        activateSquare(-15);
-        } else if (event.key === "ArrowDown") {
-        activateSquare(15);
-        } else {
-        console.log("somethings wrong!");
-        }
-    });
-
-    //function to check validity of path and, if open, change the player position value
-    const activateSquare = function (displacement) {
-        const currentLocation = playerPosition;
-        const targetDirection = currentLocation + displacement;
-        let newPosition = playerPosition;
-        if (divsArray[targetDirection].props.className === "path open") {
-        newPosition = newPosition + displacement;
-        }
-        setPlayerPostion(newPosition);
-        adviceMe(newPosition);
-    };
-
-    //trigger advice-giving at end of game
-    const adviceMe = (newPosition) => {
-        if (newPosition === 209) {
-            setWantAdvice(true);
-        }
+   
+  //connecting path move with arrow keys
+  useKeypress(["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp"], (event) => {
+    if (event.key === "ArrowRight") {
+      activateSquare(1);
+    } else if (event.key === "ArrowLeft") {
+      activateSquare(-1);
+    } else if (event.key === "ArrowUp") {
+      activateSquare(-15);
+    } else if (event.key === "ArrowDown") {
+      activateSquare(15);
+    } else {
+      console.log("somethings wrong!");
     }
+  });
 
-    //close maze
+  //function to check validity of path and, if open, change the player position value
+  const activateSquare = function (displacement) {
+    const currentLocation = playerPosition;
+    const targetDirection = currentLocation + displacement;
+    let newPosition = playerPosition;
+    if (divsArray[targetDirection].props.className === "path open") {
+      newPosition = newPosition + displacement;
+    }
+    setPlayerPostion(newPosition);
+    adviceMe(newPosition);
+  };
 
-    useEffect(() => {
-        if (quitMaze) {
-            showAdvice();
-          }
-    })
+  //trigger advice-giving at end of game
+  const adviceMe = (newPosition) => {
+    if (newPosition === 209) {
+      setWantAdvice(true);
+    }
+  };
 
-    return (
-        <div className="wrapper">
-            <p>Our fortune teller is processing your request. Please finish this maze - when you reach the end, your advice will be ready for you, should you still want it. Good luck!</p>
-        <div className="mazeContainer">
-          <div className="flexContainer">
-            {divsArray.map((item) => {
-              return (
-                <div className={item.className} key={divsArray.indexOf(item)}>
-                  {item}
-                </div>
-              );
-            })}
-          </div> 
-          <div className="controlsContainer">
-              <button className="arrow left" onClick={(e) => activateSquare(-1)}>&#8249;</button>
-              <button className="arrow right" onClick={(e) => activateSquare(1)}>&#8250;</button>
-              <button className="arrow up" onClick={(e) => activateSquare(-15)}>&#94;</button>
-              <button className="arrow down" onClick={(e) => activateSquare(15)}>Down</button>
+  //close maze
+
+  useEffect(() => {
+    if (quitMaze) {
+      showAdvice();
+    }
+  });
+
+  return (
+    <div className="wrapper">
+      <p>
+        Our fortune teller is processing your request. Please finish this maze -
+        when you reach the end, your advice will be ready for you, should you
+        still want it. Good luck!
+      </p>
+      <div className="mazeContainer">
+        <div className="flexContainer">
+          {divsArray.map((item) => {
+            return (
+              <div className={item.className} key={divsArray.indexOf(item)}>
+                {item}
+              </div>
+            );
+          })}
+        </div>
+        <div className="controlsContainer">
+          <div className="topArrow">
+            <button className="arrow up" onClick={(e) => activateSquare(-15)}>
+              up
+            </button>
           </div>
+          <div className="middleArrow">
+            <button className="arrow left" onClick={(e) => activateSquare(-1)}>
+              left
+            </button>
+            <div className="spacer"></div>
+            <button className="arrow right" onClick={(e) => activateSquare(1)}>
+              right
+            </button>
+          </div>
+          <div className="bottomArrow">
+            <button className="arrow down" onClick={(e) => activateSquare(15)}>
+              down
+            </button>
+          </div>
+        </div>
 
-          {
-            wantAdvice 
-            ? <div className="giveMeAdviceWrapper">
-                    <div className="giveMeAdvice">
-                        <p>Congrats on making it through the maze! Your advice is ready for you.</p>
-                        <button onClick = {() => setQuitMaze(true)}>Give me my advice!</button>
-                        <button onClick = {() => setWantAdvice(false)}>Take me back to the maze! I was kidding about wanting advice. I'm so glad you made me do this maze, it's all I need in life.</button>
-                    </div>
-                </div>
-            : null
-          }         
-        </div>
-        </div>
-    )
-}
+        {wantAdvice ? (
+          <div className="giveMeAdviceWrapper">
+            <div className="giveMeAdvice">
+              <p>
+                Congrats on making it through the maze! Your advice is ready for
+                you.
+              </p>
+              <button onClick={() => setQuitMaze(true)}>
+                Give me my advice!
+              </button>
+              <button onClick={() => setWantAdvice(false)}>
+                Take me back to the maze! I was kidding about wanting advice.
+                I'm so glad you made me do this maze, it's all I need in life.
+              </button>
+            </div>
+          </div>
+        ) : null}
+      </div>
+    </div>
+  );
+};
 
 export default Maze;

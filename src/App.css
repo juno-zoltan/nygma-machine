@@ -1,4 +1,7 @@
 /*general*/
+/*general*/
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&family=Poiret+One&display=swap');
+
 
 html {
   line-height: 1.15;
@@ -6,13 +9,16 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 body {
+   background-color: turquoise;
   margin: 0;
   text-align: center;
 }
+
 footer,
 header {
   display: block;
 }
+
 footer{
   color: white;
 }
@@ -20,6 +26,7 @@ h1 {
   font-size: 1em;
   color: transparent;
 }
+
 a {
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
@@ -29,6 +36,10 @@ img {
 }
 svg:not(:root) {
   overflow: hidden;
+}
+p{
+    font-family: 'hind siliguri' ;
+    background-color: transparent;
 }
 button,
 input {
@@ -90,7 +101,6 @@ button:-moz-focusring,
 }
 
 .path {
-  border: 0.5px solid blue;
   height: 42px;
   width: 42px;
 }
@@ -100,7 +110,8 @@ button:-moz-focusring,
 }
 
 .block {
-  background-color: black;
+  background-color:#1D3548;
+  border: 0.5px solid #1D3548;
 }
 
 .mazeContainer {
@@ -108,11 +119,69 @@ button:-moz-focusring,
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  padding-top: 8%;
+ 
 }
 
+.controlsContainer {
+  color: transparent;
+}
+
+.topArrow, .bottomArrow, .middleArrow{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mazeTextFlexContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.mazeText {
+color: white;
+text-align: center;
+width: 50%;
+}
 .arrow {
-  font-size: 3rem;
-  font-weight: bold;
+  height: 54px;
+  width: 54px;
+  background-color: transparent;
+	border-top: 30px solid transparent;
+	border-right: 36px solid #1D3548;
+	border-bottom: 30px solid transparent;
+  border-radius: 15px;
+  border-left: transparent;
+  color: transparent;
+}
+
+.arrow:hover {
+  height: 54px;
+  width: 54px;
+  background-color: transparent;
+	border-top: 30px solid transparent;
+	border-right: 36px solid white;
+	border-bottom: 30px solid transparent;
+  border-radius: 15px;
+  border-left: transparent;
+  color: transparent;
+}
+
+ .right {
+
+ transform: rotate(180deg);
+}
+
+.down{
+ transform: rotate(-90deg);
+}
+.up{
+ transform: rotate(90deg);
+}
+
+.spacer {
+    height:38px;
+width: 63px;
 }
 
 /*advice ready*/
@@ -132,7 +201,6 @@ button:-moz-focusring,
 .scalingContainer{
   width: 100%;
   height: auto;
-  border: 2px solid red;
 }
 
 .frontpageContainer{
@@ -221,6 +289,10 @@ height:  441px;
 .path{
 height: 29.4px;
 width:29.4px;
+}
+
+.mazeText{
+  width: 90%;
 }
 }
 
