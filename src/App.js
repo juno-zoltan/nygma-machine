@@ -9,14 +9,19 @@ function App() {
       <div className="siteBackground">
         <header>
           <div className="wrapper">
-            <h1>Ask Zoltan</h1>
+          <div className='frontpageContainer'>
+              <h1>Ask Zoltan</h1>
+              </div>
           </div>
         </header>
         <main>
+           <div className='formContainer'>
           {/* <GetApiResponse /> */}
           <Route exact path="/" component={GetApiResponse} />
           {/* <Maze /> */}
-          <Route path="/maze" component={Maze} />
+            <Route path="/maze" component={Maze} />
+            
+            </div>
         </main>
         <footer>
           <div className="wrapper">

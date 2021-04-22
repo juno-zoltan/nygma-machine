@@ -86,10 +86,19 @@ const GetApiResponse = () => {
 
   return (
     <div className="wrapper">
-      <img src={askZoltanHeader} alt="Ask Zoltan"/>
-      <img src={zoltan} alt="fortune teller image"/>
+      <div className='scalingContainer'>
+      <div className='frontpageContainer'>
+        <img className='zoltanHeader' src={askZoltanHeader} alt="Ask Zoltan" />
+        </div>
+      <div className='zoltanContainer'>
+    
+          <img className='zoltanImg' src={zoltan} alt="fortune teller image" />
+     </div>
+      </div>
+      <div className='formContainer'>
+      <div className='formElement'>
       <form onSubmit={submitChange}>
-        <label htmlFor="newName">Please enter your name</label>
+        <label htmlFor="newName">Please enter your name:</label>
         <input
           type="text"
           id="newName"
@@ -99,7 +108,7 @@ const GetApiResponse = () => {
         />
 
         <label htmlFor="newAdvice">
-          I would like advice on... Please stay within a single word
+          I would like advice on... (Please, only one word, divination is an exact science)
         </label>
         <input
           type="text"
@@ -109,15 +118,21 @@ const GetApiResponse = () => {
           required
         />
 
-        <Link to="/advice">
-          <button type="submit" disabled={userName && userInput ? false : true}>
-            submit
+            <Link to="/advice">
+              <div className='buttonContainer'>
+          <button className='formSubmit'type="submit" disabled={userName && userInput ? false : true}>
+                  submit
           </button>
+                
+                </div>
         </Link>
       </form>
 
       <Advice answer={advice} name={saveName} />
-    </div>
+      </div>
+      </div>
+      </div>
+      
   );
 };
 

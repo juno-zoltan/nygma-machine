@@ -7,13 +7,18 @@ html {
 }
 body {
   margin: 0;
+  text-align: center;
 }
 footer,
 header {
   display: block;
 }
+footer{
+  color: white;
+}
 h1 {
-  font-size: 2em;
+  font-size: 1em;
+  color: transparent;
 }
 a {
   background-color: transparent;
@@ -124,6 +129,34 @@ button:-moz-focusring,
   z-index: 30;
 }
 
+.scalingContainer{
+  width: 100%;
+  height: auto;
+  border: 2px solid red;
+}
+
+.frontpageContainer{
+  display: flex;
+  justify-content: center;
+}
+
+.formContainer {
+    width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.formElement{
+  position: relative;
+  width: 60%;
+  left: 0px;
+  bottom: 150px;
+  display: flex;
+  justify-content: center;
+}
+
+
 .giveMeAdvice {
   width: 60%;
   padding: 30px;
@@ -132,6 +165,52 @@ button:-moz-focusring,
   background-color: white;
   opacity: 1;
 }
+
+.zoltanHeader{
+  position: relative;
+  left: -52px;
+  bottom: 0px;
+}
+
+.zoltanContainer {
+   display: flex;
+  justify-content: center;
+  padding-bottom: 0%;
+}
+input {
+  display: inline-block;
+}
+
+label {
+  padding: 20px;
+  display:block;
+text-transform: uppercase;
+
+}
+
+
+
+.formSubmit{
+  text-align: center;
+}
+
+.buttonContainer{
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.formContainer button{
+  display: block;
+
+}
+
+.zoltanImg{
+  position: relative;
+  left: 0px;
+  bottom: 180px;
+}
+
 
 @media (max-width: 645px) {
   .flexContainer{
