@@ -1,8 +1,6 @@
 import DivObject from "./DivObject";
 import { useEffect, useState } from "react";
 import useKeypress from "react-use-keypress";
-import AdviceReady from "./AdviceReady";
-
 
 
 const Maze = ({showAdvice}) => {
@@ -89,7 +87,9 @@ const Maze = ({showAdvice}) => {
 
     return (
         <div className="wrapper">
-            <p>Our fortune teller is processing your request. Please finish this maze - when you reach the end, your advice will be ready for you, should you still want it. Good luck!</p>
+            <div className='mazeText'>
+                <p>Our fortune teller is processing your request. Please finish this maze - when you reach the end, your advice will be ready for you, should you still want it. Good luck!</p>
+                </div>
         <div className="mazeContainer">
           <div className="flexContainer">
             {divsArray.map((item) => {
