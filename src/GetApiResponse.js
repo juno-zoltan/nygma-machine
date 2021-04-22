@@ -95,44 +95,46 @@ const GetApiResponse = ({showMaze}) => {
   return (
     <div className="wrapper">
       <div className='scalingContainer'>
-      <div className='frontpageContainer'>
-        <img className='zoltanHeader' src={askZoltanHeader} alt="Ask Zoltan" />
+        <div className='frontpageContainer'>
+          <img className='zoltanHeader' src={askZoltanHeader} alt="Ask Zoltan" />
         </div>
-      <div className='zoltanContainer'>
-    
-          <img className='zoltanImg' src={zoltan} alt="fortune teller image" />
-     </div>
+        <div className='zoltanContainer'>
+      
+            <img className='zoltanImg' src={zoltan} alt="fortune teller image" />
+        </div>
       </div>
       <div className='formContainer'>
-      <div className='formElement'>
-      <form onSubmit={submitChange}>
-        <label htmlFor="newName">Please enter your name:</label>
-        <input
-          type="text"
-          id="newName"
-          onChange={handleNameChange}
-          value={userName}
-          required
-        />
+        <div className='formElement'>
+          <form onSubmit={submitChange}>
+            <label htmlFor="newName">Please enter your name:</label>
+            <input
+              type="text"
+              id="newName"
+              onChange={handleNameChange}
+              value={userName}
+              required
+            />
 
-        <label htmlFor="newAdvice">
-          I would like advice on... (Please, only one word, divination is an exact science)
-        </label>
-        <input
-          type="text"
-          id="newAdvice"
-          onChange={handleChange}
-          value={userInput}
-          required
-        />
-            
-        <div className='buttonContainer'>
-            <button type="submit"  disabled={userName && userInput ? false : true} >
-              submit
-            </button>
-         </div>
-      </form>
-    </div>
+            <label htmlFor="newAdvice">
+              I would like advice on... (Please, only one word, divination is an exact science)
+            </label>
+            <input
+              type="text"
+              id="newAdvice"
+              onChange={handleChange}
+              value={userInput}
+              required
+            />
+              
+            <div className='buttonContainer'>
+                <button type="submit"  disabled={userName && userInput ? false : true} >
+                  submit
+                </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>  
   );
 };
 
