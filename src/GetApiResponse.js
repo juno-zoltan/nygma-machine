@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Advice from "./Advice.js";
 import randomAdvice from "./randomAdvice.js";
 import { Link } from "react-router-dom";
+import firebase from "./firebase.js";
 
 const GetApiResponse = () => {
   // State for advice
@@ -15,6 +16,9 @@ const GetApiResponse = () => {
   // State for name input
   const [userName, setUserName] = useState("");
   const [saveName, setSaveName] = useState("");
+
+  // State for name and advice
+  const [addedInput, setAddedInput] = useState([]);
 
   // Handler for keyword input
   const handleChange = (e) => {
@@ -33,18 +37,15 @@ const GetApiResponse = () => {
     setSaveName(userName);
     setUserInput("");
     setUserName("");
-    // toggleOnOff();
+
+    e.preventDefault();
+    const dbRef = firebase.database().ref();
+    const newUser = {
+      name: userName,
+      input: advice,
+    };
+    dbRef.push(newUser);
   };
-
-  // const toggleOnOff = () => {
-  //   if (userInput && userName) {
-  //     setOnOff(false);
-  //   } else {
-  //     setOnOff(true);
-  //   }
-  // };
-
-  // const [onOff, setOnOff] = useState(true);
 
   useEffect(() => {
     if (query !== "") {
@@ -65,6 +66,21 @@ const GetApiResponse = () => {
       });
     }
   }, [query]);
+
+  useEffect(() => {
+    const dbRef = firebase.database().ref();
+    dbRef.on("value", (response) => {
+      const newState = [];
+      const data = response.val();
+      for (let key in data) {
+        newState.push({
+          key: key,
+          name: data[key],
+        });
+      }
+      setAddedInput(newState);
+    });
+  }, []);
 
   return (
     <div className="wrapper">
@@ -88,8 +104,11 @@ const GetApiResponse = () => {
           value={userInput}
           required
         />
-        <Link to="/maze">
-          <button type="submit">submit</button>
+
+        <Link to="/advice">
+          <button type="submit" disabled={userName && userInput ? false : true}>
+            submit
+          </button>
         </Link>
       </form>
 
