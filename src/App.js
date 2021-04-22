@@ -2,14 +2,13 @@ import "./App.css";
 import GetApiResponse from "./GetApiResponse.js";
 import Maze from "./Maze.js";
 import Advice from "./Advice.js";
-import {
-  BrowserRouter as Router,
-  Route,
-} from 'react-router-dom';
+import {useState} from "react";
 
 function App() {
+
+  const [showComponent, setShowComponent] = useState("api");
+
   return (
-      <Router>
       <div>
         <header>
           <div className="wrapper">
@@ -18,9 +17,25 @@ function App() {
         </header>
         <main>
           
-          <GetApiResponse />
+          {
+            showComponent === "api"
+            ?<GetApiResponse showMaze={() => setShowComponent("maze")}/>
+            : null
+          }
+
+          {
+            showComponent === "maze"
+            ?<Maze showAdvice={() => setShowComponent("advice")}/>
+            : null
+          }
+
+          {
+            showComponent === "advice"
+            ?<Advice getAdvice={() => setShowComponent("api")}/>
+            : null
+          }
+
           
-          <Route exact path = "/advice" component = {Advice}></Route>
          
         </main>
         <footer>
@@ -32,7 +47,6 @@ function App() {
           </div>
         </footer>
       </div>
-      </Router>
   );
 }
 

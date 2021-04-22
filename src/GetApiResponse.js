@@ -2,9 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import randomAdvice from "./randomAdvice.js";
 import firebase from "./firebase.js";
-import Maze from './Maze'
 
-const GetApiResponse = () => {
+const GetApiResponse = ({showMaze}) => {
+
   // State for advice
   const [advice, setAdvice] = useState([]);
 
@@ -43,6 +43,7 @@ const GetApiResponse = () => {
       input: advice,
     };
     dbRef.push(newUser);
+    setMazePlease(true);
   };
 
   useEffect(() => {
@@ -80,7 +81,14 @@ const GetApiResponse = () => {
     });
   }, []);
 
-  const [showMaze, setShowMaze] = useState(false);
+  //toggling component
+  const [mazePlease, setMazePlease] = useState(false)
+
+  useEffect( () => {
+    if (mazePlease) {
+      showMaze();
+    }
+  })
 
   return (
     <div className="wrapper">
@@ -105,17 +113,10 @@ const GetApiResponse = () => {
           required
         />
 
-        <button type="submit"  disabled={userName && userInput ? false : true} onClick={ () => setShowMaze(!showMaze)} >
+        <button type="submit"  disabled={userName && userInput ? false : true} >
           submit
         </button>        
       </form>
-      {
-        showMaze 
-          ? <Maze/>
-          : null
-        }
-
-      {/* <Advice response={addedInput} /> */}
     </div>
   );
 };
