@@ -1,10 +1,30 @@
-const Advice = (props) => {
+import firebase from './firebase.js';
+import {useEffect, useState} from 'react';
+
+
+const Advice = () => {
+
+  const [displayedName, setDisplayedName] = useState("");
+  const [displayedAdvice, setDisplayedAdvice] = useState("");
+
+  useEffect(() => {
+    const dbRef = firebase.database().ref();
+    dbRef.on("value", snap => {
+      snap.forEach( (childSnap) => {
+        const setOfInfo = childSnap.val();
+        setDisplayedAdvice(setOfInfo.input);
+        setDisplayedName(setOfInfo.name);
+      } )
+    });
+  }, []);
+
+
   return (
     <div>
       <h3>Your response</h3>
       <section>
-        <h4>{props.name}</h4>
-        <p>{props.answer}</p>
+        <h4>{displayedName}</h4>
+        <p>{displayedAdvice}</p>
       </section>
     </div>
   );

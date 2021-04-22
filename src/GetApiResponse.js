@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Advice from "./Advice.js";
 import randomAdvice from "./randomAdvice.js";
 import { Link } from "react-router-dom";
 import firebase from "./firebase.js";
@@ -23,22 +22,21 @@ const GetApiResponse = () => {
   // Handler for keyword input
   const handleChange = (e) => {
     setUserInput(e.target.value);
+    setQuery(userInput);
   };
 
   // Handler for user name input
   const handleNameChange = (e) => {
     setUserName(e.target.value);
+    setSaveName(userName);
   };
 
   // Handler for submit button
   const submitChange = (e) => {
     e.preventDefault();
-    setQuery(userInput);
-    setSaveName(userName);
     setUserInput("");
     setUserName("");
 
-    e.preventDefault();
     const dbRef = firebase.database().ref();
     const newUser = {
       name: userName,
@@ -84,7 +82,7 @@ const GetApiResponse = () => {
 
   return (
     <div className="wrapper">
-      <form onSubmit={submitChange}>
+      <form type="submit">
         <label htmlFor="newName">Please enter your name</label>
         <input
           type="text"
@@ -105,14 +103,23 @@ const GetApiResponse = () => {
           required
         />
 
-        <Link to="/advice">
-          <button type="submit" disabled={userName && userInput ? false : true}>
-            submit
-          </button>
-        </Link>
+
+            <button disabled={userName && userInput ? false : true}>
+              submit
+            </button>
+            
+            <Link onClick={submitChange} to="/advice">
+              go to advice
+            </Link>
+
+          {/* <button type="submit" disabled={userName && userInput ? false : true}><Link to="/advice">
+              submit</Link>
+          </button> */}
+
+        
       </form>
 
-      <Advice answer={advice} name={saveName} />
+      {/* <Advice response={addedInput} /> */}
     </div>
   );
 };
