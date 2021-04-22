@@ -2,11 +2,14 @@ import "./App.css";
 import GetApiResponse from "./GetApiResponse.js";
 import Maze from "./Maze.js";
 import Advice from "./Advice.js";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+} from 'react-router-dom';
 
 function App() {
   return (
-    <Router>
+      <Router>
       <div>
         <header>
           <div className="wrapper">
@@ -14,12 +17,11 @@ function App() {
           </div>
         </header>
         <main>
-          {/* <GetApiResponse /> */}
-          <Route exact path="/" component={GetApiResponse} />
-          {/* <Maze /> */}
-          <Route path="/maze" component={Maze} />
-          {/* <Advice /> */}
-          <Route path="/advice" component={Advice} /> 
+          
+          <GetApiResponse />
+          
+          <Route exact path = "/advice" component = {Advice}></Route>
+         
         </main>
         <footer>
           <div className="wrapper">
@@ -30,7 +32,7 @@ function App() {
           </div>
         </footer>
       </div>
-    </Router>
+      </Router>
   );
 }
 

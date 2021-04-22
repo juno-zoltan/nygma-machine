@@ -21,7 +21,6 @@ const Advice = () => {
 
   return (
     <div>
-      <h3>Your response</h3>
       <section>
         <h4>{displayedName}</h4>
         <p>{displayedAdvice}</p>

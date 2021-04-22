@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import randomAdvice from "./randomAdvice.js";
-import { Link } from "react-router-dom";
 import firebase from "./firebase.js";
+import Maze from './Maze'
 
 const GetApiResponse = () => {
   // State for advice
@@ -80,9 +80,11 @@ const GetApiResponse = () => {
     });
   }, []);
 
+  const [showMaze, setShowMaze] = useState(false);
+
   return (
     <div className="wrapper">
-      <form type="submit">
+      <form onSubmit={submitChange}>
         <label htmlFor="newName">Please enter your name</label>
         <input
           type="text"
@@ -103,21 +105,15 @@ const GetApiResponse = () => {
           required
         />
 
-
-            <button disabled={userName && userInput ? false : true}>
-              submit
-            </button>
-            
-            <Link onClick={submitChange} to="/advice">
-              go to advice
-            </Link>
-
-          {/* <button type="submit" disabled={userName && userInput ? false : true}><Link to="/advice">
-              submit</Link>
-          </button> */}
-
-        
+        <button type="submit"  disabled={userName && userInput ? false : true} onClick={ () => setShowMaze(!showMaze)} >
+          submit
+        </button>        
       </form>
+      {
+        showMaze 
+          ? <Maze/>
+          : null
+        }
 
       {/* <Advice response={addedInput} /> */}
     </div>
