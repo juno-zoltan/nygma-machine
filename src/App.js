@@ -9,7 +9,7 @@ function App() {
   const [showComponent, setShowComponent] = useState("api");
 
   return (
-      <div className="siteBackground formContainer">
+      <div className="siteBackground">
         <header>
           <div className="wrapper">
           <div className='frontpageContainer'>
