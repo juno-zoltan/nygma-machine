@@ -100,11 +100,18 @@ const Maze = ({showAdvice}) => {
               );
             })}
           </div> 
-          <div className="controlsContainer">
-              <button className="arrow left" onClick={(e) => activateSquare(-1)}>&#8249;</button>
-              <button className="arrow right" onClick={(e) => activateSquare(1)}>&#8250;</button>
-              <button className="arrow up" onClick={(e) => activateSquare(-15)}>&#94;</button>
-              <button className="arrow down" onClick={(e) => activateSquare(15)}>Down</button>
+                <div className="controlsContainer">
+                    <div className='topArrow'>
+                        <button className="arrow up" onClick={(e) => activateSquare(-15)}>up</button>
+                    </div>
+                     <div className='middleArrow'>
+                        <button className="arrow left" onClick={(e) => activateSquare(-1)}>left</button>
+                        <div className='spacer'></div>
+                        <button className="arrow right" onClick={(e) => activateSquare(1)}>right</button>
+                    </div>
+                    <div className='bottomArrow'>
+                        <button className="arrow down" onClick={(e) => activateSquare(15)}>down</button>
+                    </div>         
           </div>
 
           {
