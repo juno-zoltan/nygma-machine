@@ -1,13 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Advice from "./Advice.js";
 import randomAdvice from "./randomAdvice.js";
-import { Link } from "react-router-dom";
 import firebase from "./firebase.js";
 import zoltan from "./assets/zoltan.png"
 import askZoltanHeader from "./assets/askZoltanHeader.png"
 
-const GetApiResponse = () => {
+const GetApiResponse = ({showMaze}) => {
+
   // State for advice
   const [advice, setAdvice] = useState([]);
 
@@ -25,28 +24,28 @@ const GetApiResponse = () => {
   // Handler for keyword input
   const handleChange = (e) => {
     setUserInput(e.target.value);
+    setQuery(userInput);
   };
 
   // Handler for user name input
   const handleNameChange = (e) => {
     setUserName(e.target.value);
+    setSaveName(userName);
   };
 
   // Handler for submit button
   const submitChange = (e) => {
     e.preventDefault();
-    setQuery(userInput);
-    setSaveName(userName);
     setUserInput("");
     setUserName("");
 
-    e.preventDefault();
     const dbRef = firebase.database().ref();
     const newUser = {
       name: userName,
       input: advice,
     };
     dbRef.push(newUser);
+    setMazePlease(true);
   };
 
   useEffect(() => {
@@ -84,6 +83,15 @@ const GetApiResponse = () => {
     });
   }, []);
 
+  //toggling component
+  const [mazePlease, setMazePlease] = useState(false)
+
+  useEffect( () => {
+    if (mazePlease) {
+      showMaze();
+    }
+  })
+
   return (
     <div className="wrapper">
       <div className='scalingContainer'>
@@ -117,22 +125,14 @@ const GetApiResponse = () => {
           value={userInput}
           required
         />
-
-            <Link to="/advice">
-              <div className='buttonContainer'>
-          <button className='formSubmit'type="submit" disabled={userName && userInput ? false : true}>
-                  submit
-          </button>
-                
-                </div>
-        </Link>
+            
+        <div className='buttonContainer'>
+            <button type="submit"  disabled={userName && userInput ? false : true} >
+              submit
+            </button>
+         </div>
       </form>
-
-      <Advice answer={advice} name={saveName} />
-      </div>
-      </div>
-      </div>
-      
+    </div>
   );
 };
 
