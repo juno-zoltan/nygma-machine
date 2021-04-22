@@ -79,7 +79,9 @@ const Maze = () => {
 
     return (
         <div className="wrapper">
-            <p>Advice Slip, our fortune teller, is processing your request. Please finish this maze - when you reach the end, your advice will be ready for you, should you still want it. Good luck!</p>
+            <div className="mazeTextFlexContainer">
+                <p className="mazeText">Our fortune teller, is processing your request. Please finish this maze - when you reach the end, your advice will be ready for you, should you still want it. Good luck!</p>
+                </div>
         <div className="mazeContainer">
           <div className="flexContainer">
             {divsArray.map((item) => {
@@ -90,11 +92,18 @@ const Maze = () => {
               );
             })}
           </div> 
-          <div className="controlsContainer">
-              <button className="arrow left" onClick={(e) => activateSquare(-1)}>&#8249;</button>
-              <button className="arrow right" onClick={(e) => activateSquare(1)}>&#8250;</button>
-              <button className="arrow up" onClick={(e) => activateSquare(-15)}>&#94;</button>
-              <button className="arrow down" onClick={(e) => activateSquare(15)}>Down</button>
+                <div className="controlsContainer">
+                    <div className='topArrow'>
+                        <button className="arrow up" onClick={(e) => activateSquare(-15)}>up</button>
+                    </div>
+                     <div className='middleArrow'>
+                        <button className="arrow left" onClick={(e) => activateSquare(-1)}>left</button>
+                        <div className='spacer'></div>
+                        <button className="arrow right" onClick={(e) => activateSquare(1)}>right</button>
+                    </div>
+                    <div className='bottomArrow'>
+                        <button className="arrow down" onClick={(e) => activateSquare(15)}>down</button>
+                    </div>         
           </div>
           {
             displayAdvice 

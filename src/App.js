@@ -9,7 +9,7 @@ function App() {
       <div>
         <header>
           <div className="wrapper">
-            <h1>Bitchin' Test Zone</h1>
+            <h1>The Nygma Machine</h1>
           </div>
         </header>
         <main>
