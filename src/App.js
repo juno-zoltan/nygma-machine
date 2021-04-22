@@ -9,8 +9,6 @@ function App() {
   const [showComponent, setShowComponent] = useState("api");
 
   return (
-      <div>
-=======
       <div className="siteBackground formContainer">
         <header>
           <div className="wrapper">
@@ -37,7 +35,8 @@ function App() {
             showComponent === "advice"
             ?<Advice getAdvice={() => setShowComponent("api")}/>
             : null
-    
+          }
+
         </main>
         <footer>
           <div className="wrapper">
