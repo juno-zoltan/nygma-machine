@@ -14,7 +14,6 @@ header {
 }
 h1 {
   font-size: 2em;
-  margin: 0.67em 0;
 }
 a {
   background-color: transparent;
@@ -67,10 +66,15 @@ button:-moz-focusring,
 
 .wrapper {
   max-width: 1200px;
-  margin: 30px auto;
+  margin: 0px auto;
+}
+
+.siteBackground {
+  background: radial-gradient(50% 50% at 50% 50%, #00FFC2 0%, rgba(255, 255, 255, 0) 100%), #1D3548;
 }
 
 /*advice form*/
+
 
 /*maze*/
 .flexContainer {

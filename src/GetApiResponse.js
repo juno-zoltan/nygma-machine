@@ -4,6 +4,8 @@ import Advice from "./Advice.js";
 import randomAdvice from "./randomAdvice.js";
 import { Link } from "react-router-dom";
 import firebase from "./firebase.js";
+import zoltan from "./assets/zoltan.png"
+import askZoltanHeader from "./assets/askZoltanHeader.png"
 
 const GetApiResponse = () => {
   // State for advice
@@ -84,6 +86,8 @@ const GetApiResponse = () => {
 
   return (
     <div className="wrapper">
+      <img src={askZoltanHeader} alt="Ask Zoltan"/>
+      <img src={zoltan} alt="fortune teller image"/>
       <form onSubmit={submitChange}>
         <label htmlFor="newName">Please enter your name</label>
         <input

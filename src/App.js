@@ -6,10 +6,10 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 function App() {
   return (
     <Router>
-      <div>
+      <div className="siteBackground">
         <header>
           <div className="wrapper">
-            <h1>Bitchin' Test Zone</h1>
+            <h1>Ask Zoltan</h1>
           </div>
         </header>
         <main>
