@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import randomAdvice from "./randomAdvice.js";
 import firebase from "./firebase.js";
+import zoltan from "./assets/zoltan.png"
+import askZoltanHeader from "./assets/askZoltanHeader.png"
 
 const GetApiResponse = ({showMaze}) => {
 
@@ -92,8 +94,19 @@ const GetApiResponse = ({showMaze}) => {
 
   return (
     <div className="wrapper">
+      <div className='scalingContainer'>
+      <div className='frontpageContainer'>
+        <img className='zoltanHeader' src={askZoltanHeader} alt="Ask Zoltan" />
+        </div>
+      <div className='zoltanContainer'>
+    
+          <img className='zoltanImg' src={zoltan} alt="fortune teller image" />
+     </div>
+      </div>
+      <div className='formContainer'>
+      <div className='formElement'>
       <form onSubmit={submitChange}>
-        <label htmlFor="newName">Please enter your name</label>
+        <label htmlFor="newName">Please enter your name:</label>
         <input
           type="text"
           id="newName"
@@ -103,7 +116,7 @@ const GetApiResponse = ({showMaze}) => {
         />
 
         <label htmlFor="newAdvice">
-          I would like advice on... Please stay within a single word
+          I would like advice on... (Please, only one word, divination is an exact science)
         </label>
         <input
           type="text"
@@ -112,10 +125,12 @@ const GetApiResponse = ({showMaze}) => {
           value={userInput}
           required
         />
-
-        <button type="submit"  disabled={userName && userInput ? false : true} >
-          submit
-        </button>        
+            
+        <div className='buttonContainer'>
+            <button type="submit"  disabled={userName && userInput ? false : true} >
+              submit
+            </button>
+         </div>
       </form>
     </div>
   );
