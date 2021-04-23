@@ -7,38 +7,39 @@ const Maze = ({ showAdvice }) => {
   const [playerPosition, setPlayerPostion] = useState(16);
   const [quitMaze, setQuitMaze] = useState(false);
 
-  //block array helper function
-  const compareArray = (i) => {
-    const invalidArray = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,19,21,22,26,28,29,30,32,39,41,43,44,45,47,49,51,53,59,60,64,66,67,69,70,72,73,74,75,76,77,79,81,85,89,90,98,99,100,102,103,104,105,107,108,110,111,112,115,119,120,121,122,124,129,131,132,134,135,137,141,142,147,149,150,152,154,155,158,159,160,164,165,169,170,171,176,178,179,180,181,182,188,189,192,193,194,195,200,205,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224];
-    for (let x = 0; x < invalidArray.length; x++) {
-      if (i === invalidArray[x]) {
-        return true;
-      }
-    }
-  };
-
-  //use array to populate grid squares
-  useEffect(() => {
-    //populate the array
-    const populateArray = function (howMany, newPosition) {
-      const innerArray = [];
-      for (let i = 0; i < howMany; i++) {
-        if (compareArray(i)) {
-          const item = DivObject("path block");
-          innerArray.push(item);
-        } else if (i === newPosition) {
-          const item = DivObject("path red");
-          innerArray.push(item);
-        } else {
-          const item = DivObject("path open");
-          innerArray.push(item);
+    //block array helper function
+    const compareArray = (i) => {
+        const invalidArray = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,19,21,22,26,28,29,30,32,39,41,43,44,45,47,49,51,53,59,60,64,66,67,69,70,72,73,74,75,76,77,79,81,85,89,90,98,99,100,102,103,104,105,107,108,110,111,112,115,119,120,121,122,124,129,131,132,134,135,137,141,142,147,149,150,152,154,155,158,159,160,164,165,169,170,171,176,178,179,180,181,182,188,189,192,193,194,195,200,205,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224];
+        for (let x = 0; x < invalidArray.length; x++) {
+        if (i === invalidArray[x]) {
+            return true;
         }
-      }
-      setDivsArray(innerArray);
+        }
     };
-    populateArray(225, playerPosition);
-  }, [playerPosition]);
 
+    useEffect(() => {
+        //populate the array
+        const populateArray = function (howMany, newPosition) {
+            const innerArray = [];
+            for (let i = 0; i < howMany; i++) {
+            if (compareArray(i)) {
+                const item = DivObject("path block");
+                innerArray.push(item);
+            }
+            else if (i === newPosition) {
+                const item = DivObject("path red");
+                innerArray.push(item);
+            } else {
+                const item = DivObject("path open");
+                innerArray.push(item);
+            }
+            }
+            setDivsArray(innerArray);
+        };
+        populateArray(225, playerPosition);
+    },[playerPosition]);
+
+   
   //connecting path move with arrow keys
   useKeypress(["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp"], (event) => {
     if (event.key === "ArrowRight") {
