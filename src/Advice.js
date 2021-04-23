@@ -7,6 +7,7 @@ const Advice = () => {
   const [displayedName, setDisplayedName] = useState("");
   const [displayedAdvice, setDisplayedAdvice] = useState("");
 
+  // Pulls firebase data and displays it on page
   useEffect(() => {
     const dbRef = firebase.database().ref();
     dbRef.on("value", snap => {
@@ -22,7 +23,8 @@ const Advice = () => {
   return (
     <div>
       <section>
-        <h4>{displayedName}</h4>
+      <h4>So, {displayedName}… You asked for some life-changing advice?</h4>
+        <p>Here's what Zoltan the GREAT has to say about that…</p>
         <p>{displayedAdvice}</p>
       </section>
     </div>
