@@ -2,11 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import randomAdvice from "./randomAdvice.js";
 import firebase from "./firebase.js";
-import zoltan from "./assets/zoltan.png"
-import askZoltanHeader from "./assets/askZoltanHeader.png"
+import zoltan from "./assets/zoltan.png";
+import askZoltanHeader from "./assets/askZoltanHeader.png";
 
-const GetApiResponse = ({showMaze}) => {
-
+const GetApiResponse = ({ showMaze }) => {
   // State for advice
   const [advice, setAdvice] = useState([]);
 
@@ -16,10 +15,6 @@ const GetApiResponse = ({showMaze}) => {
 
   // State for name input
   const [userName, setUserName] = useState("");
-  const [saveName, setSaveName] = useState("");
-
-  // State for name and advice
-  const [addedInput, setAddedInput] = useState([]);
 
   // Handler for keyword input
   const handleChange = (e) => {
@@ -30,7 +25,6 @@ const GetApiResponse = ({showMaze}) => {
   // Handler for user name input
   const handleNameChange = (e) => {
     setUserName(e.target.value);
-    setSaveName(userName);
   };
 
   // Handler for submit button
@@ -68,43 +62,32 @@ const GetApiResponse = ({showMaze}) => {
     }
   }, [query]);
 
-  useEffect(() => {
-    const dbRef = firebase.database().ref();
-    dbRef.on("value", (response) => {
-      const newState = [];
-      const data = response.val();
-      for (let key in data) {
-        newState.push({
-          key: key,
-          name: data[key],
-        });
-      }
-      setAddedInput(newState);
-    });
-  }, []);
 
   //toggling component
-  const [mazePlease, setMazePlease] = useState(false)
+  const [mazePlease, setMazePlease] = useState(false);
 
-  useEffect( () => {
+  useEffect(() => {
     if (mazePlease) {
       showMaze();
     }
-  })
+  });
 
   return (
     <div className="wrapper">
-      <div className='scalingContainer'>
-        <div className='frontpageContainer'>
-          <img className='zoltanHeader' src={askZoltanHeader} alt="Ask Zoltan" />
+      <div className="scalingContainer">
+        <div className="frontpageContainer">
+          <img
+            className="zoltanHeader"
+            src={askZoltanHeader}
+            alt="Ask Zoltan"
+          />
         </div>
-        <div className='zoltanContainer'>
-      
-            <img className='zoltanImg' src={zoltan} alt="fortune teller image" />
+        <div className="zoltanContainer">
+          <img className="zoltanImg" src={zoltan} alt="fortune teller" />
         </div>
       </div>
-      <div className='formContainer'>
-        <div className='formElement'>
+      <div className="formContainer">
+        <div className="formElement">
           <form onSubmit={submitChange}>
             <label htmlFor="newName">Please enter your name:</label>
             <input
@@ -116,7 +99,8 @@ const GetApiResponse = ({showMaze}) => {
             />
 
             <label htmlFor="newAdvice">
-              I would like advice on... (Please, only one word, divination is an exact science)
+              I would like advice on... (Please, only one word, divination is an
+              exact science)
             </label>
             <input
               type="text"
@@ -125,16 +109,19 @@ const GetApiResponse = ({showMaze}) => {
               value={userInput}
               required
             />
-              
-            <div className='buttonContainer'>
-                <button type="submit"  disabled={userName && userInput ? false : true} >
-                  submit
-                </button>
+
+            <div className="buttonContainer">
+              <button
+                type="submit"
+                disabled={userName && userInput ? false : true}
+              >
+                submit
+              </button>
             </div>
           </form>
         </div>
       </div>
-    </div>  
+    </div>
   );
 };
 
