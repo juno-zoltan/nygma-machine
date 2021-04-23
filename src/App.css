@@ -26,6 +26,10 @@ h1 {
   font-size: 1em;
   color: transparent;
 }
+h4{
+  color: black;
+  font-family: 'hind siliguri';
+}
 
 a {
   background-color: transparent;
@@ -291,6 +295,15 @@ img{
   bottom: 180px;
 }
 
+.adviceSection{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+
+}
+
 
 @media (max-width: 645px) {
   .flexContainer{
@@ -310,6 +323,10 @@ width:29.4px;
 
 
 @media (max-width: 445px) {
+body{
+  padding: 10px;
+}
+
   .flexContainer{
 width:  315px;
 height:  315px;
@@ -319,4 +336,9 @@ height:  315px;
 height: 21px;
 width: 21px;
 }
+
+h4{
+  color:white;
+}
+
 }
