@@ -2,12 +2,10 @@ import DivObject from "./DivObject";
 import { useEffect, useState } from "react";
 import useKeypress from "react-use-keypress";
 
-
-const Maze = ({showAdvice}) => {
-    const [divsArray, setDivsArray] = useState([]);
-    const [playerPosition, setPlayerPostion] = useState(16);
-    const [wantAdvice, setWantAdvice] = useState(false);
-    const [quitMaze, setQuitMaze] = useState(false);
+const Maze = ({ showAdvice }) => {
+  const [divsArray, setDivsArray] = useState([]);
+  const [playerPosition, setPlayerPostion] = useState(16);
+  const [quitMaze, setQuitMaze] = useState(false);
 
     //block array helper function
     const compareArray = (i) => {
@@ -52,9 +50,7 @@ const Maze = ({showAdvice}) => {
       activateSquare(-15);
     } else if (event.key === "ArrowDown") {
       activateSquare(15);
-    } else {
-      console.log("somethings wrong!");
-    }
+    } 
   });
 
   //function to check validity of path and, if open, change the player position value
@@ -72,7 +68,7 @@ const Maze = ({showAdvice}) => {
   //trigger advice-giving at end of game
   const adviceMe = (newPosition) => {
     if (newPosition === 209) {
-      setWantAdvice(true);
+      setQuitMaze(true);
     }
   };
 
@@ -85,12 +81,14 @@ const Maze = ({showAdvice}) => {
   });
 
   return (
-    <div className="wrapper">
-      <p>
-        Our fortune teller is processing your request. Please finish this maze -
-        when you reach the end, your advice will be ready for you, should you
-        still want it. Good luck!
-      </p>
+      <div className="wrapper">
+        <div className='textContainer'>
+            <p className='mazeText'>
+                        Our fortune teller is processing your request. Please finish this maze -
+                        when you reach the end, your advice will be ready for you, should you
+                        still want it. Good luck!
+            </p>
+        </div>
       <div className="mazeContainer">
         <div className="flexContainer">
           {divsArray.map((item) => {
@@ -123,23 +121,6 @@ const Maze = ({showAdvice}) => {
           </div>
         </div>
 
-        {wantAdvice ? (
-          <div className="giveMeAdviceWrapper">
-            <div className="giveMeAdvice">
-              <p>
-                Congrats on making it through the maze! Your advice is ready for
-                you.
-              </p>
-              <button onClick={() => setQuitMaze(true)}>
-                Give me my advice!
-              </button>
-              <button onClick={() => setWantAdvice(false)}>
-                Take me back to the maze! I was kidding about wanting advice.
-                I'm so glad you made me do this maze, it's all I need in life.
-              </button>
-            </div>
-          </div>
-        ) : null}
       </div>
     </div>
   );
