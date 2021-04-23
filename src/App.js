@@ -19,6 +19,7 @@ function App() {
         </header>
         <main>
           
+          {/* Show component depending on state string value */}
           {
             showComponent === "api"
             ?<GetApiResponse showMaze={() => setShowComponent("maze")}/>
@@ -42,8 +43,9 @@ function App() {
           <div className="wrapper">
             <p>
               Created with Advice Slip API by Peter Del Mastro, Nate Yeow,
-              Nicole de Guzman and Mandy Poon at Juno College
+              Nicole de Guzman and Mandy Poon at <a href="https://junocollege.com/" rel="noopener noreferrer" target="_blank">Juno College</a>
             </p>
+            <p>Photo of Zoltan credits to: Hulki Okan Tabak and <a href="https://unsplash.com/photos/0EX0Q16ScvY" rel="noopener noreferrer" target="_blank">Unsplash</a> </p>
           </div>
         </footer>
       </div>
