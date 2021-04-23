@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import randomAdvice from "./randomAdvice.js";
 import firebase from "./firebase.js";
 import zoltan from "./assets/zoltan.png";
-import askZoltanHeader from "./assets/askZoltanHeader.png";
+
 
 const GetApiResponse = ({ showMaze }) => {
   // State for advice
@@ -75,13 +75,6 @@ const GetApiResponse = ({ showMaze }) => {
   return (
     <div className="wrapper">
       <div className="scalingContainer">
-        <div className="frontpageContainer">
-          <img
-            className="zoltanHeader"
-            src={askZoltanHeader}
-            alt="Ask Zoltan"
-          />
-        </div>
         <div className="zoltanContainer">
           <img className="zoltanImg" src={zoltan} alt="fortune teller" />
         </div>

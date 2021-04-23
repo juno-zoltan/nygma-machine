@@ -9,7 +9,7 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 body {
-   background-color: turquoise;
+   background-color: #1D3548;
   margin: 0;
   text-align: center;
 }
@@ -30,6 +30,8 @@ h1 {
 a {
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
+  color:white;
+  text-decoration: none;
 }
 img {
   border-style: none;
@@ -133,7 +135,7 @@ button:-moz-focusring,
   justify-content: center;
 }
 
-.mazeTextFlexContainer {
+.textContainer {
   display: flex;
   justify-content: center;
 }
@@ -142,6 +144,7 @@ button:-moz-focusring,
 color: white;
 text-align: center;
 width: 50%;
+
 }
 .arrow {
   height: 54px;
@@ -216,7 +219,7 @@ width: 63px;
 }
 
 .formElement{
-  position: relative;
+
   width: 60%;
   left: 0px;
   bottom: 150px;
@@ -232,6 +235,7 @@ width: 63px;
   text-align: center;  
   background-color: white;
   opacity: 1;
+  font-family: 'hind siliguri';
 }
 
 .zoltanHeader{
@@ -253,13 +257,22 @@ label {
   padding: 20px;
   display:block;
 text-transform: uppercase;
+font-family: 'hind siliguri';
 
+
+}
+
+img{
+  max-width: 70%;
+  height: auto;
 }
 
 
 
 .formSubmit{
   text-align: center;
+  font-family: 'hind siliguri';
+  
 }
 
 .buttonContainer{
@@ -274,7 +287,6 @@ text-transform: uppercase;
 }
 
 .zoltanImg{
-  position: relative;
   left: 0px;
   bottom: 180px;
 }
