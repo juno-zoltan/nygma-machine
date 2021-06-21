@@ -1,13 +1,14 @@
 import firebase from "firebase/app";
 import "firebase/database";
 // Your web app's Firebase configuration
-var firebaseConfig = {
-  apiKey: "AIzaSyDGGGb95TwGTY8m5p1jAfSmAOZ5Y1iN3SE",
-  authDomain: "juno-zoltan.firebaseapp.com",
-  projectId: "juno-zoltan",
-  storageBucket: "juno-zoltan.appspot.com",
-  messagingSenderId: "232035626294",
-  appId: "1:232035626294:web:7e942bf960397c0bddd797",
+const firebaseConfig = {
+  apiKey: "AIzaSyBaCIzc0d5Z1CpNMsVZC7UJG7EWkgHJy_g",
+  authDomain: "zoltannat-55eaa.firebaseapp.com",
+  databaseURL: "https://zoltannat-55eaa-default-rtdb.firebaseio.com",
+  projectId: "zoltannat-55eaa",
+  storageBucket: "zoltannat-55eaa.appspot.com",
+  messagingSenderId: "760219817103",
+  appId: "1:760219817103:web:d1eef7a571873c20420cfa"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
